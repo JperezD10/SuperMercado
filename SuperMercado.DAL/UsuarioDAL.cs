@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,14 @@ namespace SuperMercado.DAL
 
         public bool Login()
         {
-            acceso.Leer("sp", new SqlParameter[]
+            var tablaResult = acceso.Leer("sp", new SqlParameter[]
             {
                 new SqlParameter("parametro", 10)
             });
+            foreach (DataRow fila in tablaResult.Rows)
+            {
+                SqlMapeoHelper.CargarProducto(fila);
+            }
             return true;
         }
     }
