@@ -1,0 +1,55 @@
+﻿@attribute [Route(Rutas.Login)]
+@layout LoginLayout
+@inject NavigationManager NavigationManager
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Ingresar</h3>
+            <form>
+
+              <div class="row">
+                <div class="col-md-12 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="Usuario" class="form-control form-control-lg" />
+                    <label class="form-label" for="Usuario">Usuario</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12 mb-4">
+                      <div class="form-outline">
+                        <input type="password" id="Contraseña" class="form-control form-control-lg" />
+                        <label class="form-label" for="Contraseña">Contraseña</label>
+                      </div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-2 row">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Entrar" />
+              </div>
+
+              <div class="row">
+                  <div class="mt-4 pt-2 row">
+                    <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="() => NavigationManager.NavigateTo(Rutas.Register)">Si no tiene una cuenta toque aqui</a>
+                  </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+@code {
+
+}
