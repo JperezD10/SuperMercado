@@ -6,18 +6,19 @@ namespace SuperMercado.DAL
     public class Acceso
     {
         SqlConnection _conexion;
-        SqlTransaction _transaction;
+        SqlTransaction? _transaction;
 
         //este ctor es para que no puedan crear instancias con new
         private Acceso()
         {
             //conexion juli
             _conexion = new SqlConnection("Data Source=.;Initial Catalog=SuperMercado;Integrated Security=True");
-            
+
+
             //conexion fede
             //_conexion = new SqlConnection("");
         }
-        private static Acceso _instance = null;
+        private static Acceso? _instance = null;
 
         public static Acceso GetInstance
         {
