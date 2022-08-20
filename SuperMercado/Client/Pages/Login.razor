@@ -32,7 +32,9 @@
               </div>
 
               <div class="mt-4 pt-2 row">
-                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Entrar" />
+                <button class="btn btn-primary btn-lg btn-block" @onclick="LogIn">
+                    Entrar
+                </button>
               </div>
 
               <div class="row">
@@ -52,4 +54,9 @@
 
 @code {
 
+    public void LogIn()
+    {
+        //logica de login y credenciales etc etc
+        NavigationManager.NavigateTo(Rutas.Index);
+    }
 }
