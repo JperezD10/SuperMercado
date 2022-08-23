@@ -1,9 +1,23 @@
 ﻿@attribute [Route(Rutas.Index)]
 
-<PageTitle>Index</PageTitle>
+@if (tienePermiso)
+{
+    <h1>Hello, world!</h1>
 
-<h1>Hello, world!</h1>
+    <p>Welcome to your new app</p>
 
-Welcome to your new app.
+}
+else
+{
+    <SinPermisoComponent></SinPermisoComponent>
+}
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    private bool tienePermiso = false;
+
+    protected override void OnInitialized()
+    {
+        tienePermiso = false; //aca haces la logica que te diga si tiene permiso o no el usuario
+    }
+}
