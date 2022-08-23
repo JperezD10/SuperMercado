@@ -29,5 +29,23 @@ namespace SuperMercado.DAL
                 Descripcion = fila["Descripcion"].ToString() ?? "",
             };
         }
+
+        public static Patente CargarPermiso(DataRow fila)
+        {
+            return new Patente()
+            {
+                Id = fila.Field<int>("Id"),
+                Nombre = fila.Field<string>("Nombre")
+            };
+        }
+
+        public static Familia CargarFamilia(DataRow fila)
+        {
+            return new Familia()
+            {
+                Id = fila.Field<int>("Id"),
+                Nombre = fila.Field<string>("Nombre")
+            };
+        }
     }
 }
