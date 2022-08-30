@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperMercado.BE;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,17 +13,18 @@ namespace SuperMercado.DAL
     {
         Acceso acceso = Acceso.GetInstance;
 
-        public bool Login()
+        public Usuario Login(string username, string contraseña)
         {
+            Usuario usuario = null;
             var tablaResult = acceso.Leer("sp", new SqlParameter[]
             {
                 new SqlParameter("parametro", 10)
             });
             foreach (DataRow fila in tablaResult.Rows)
             {
-                SqlMapeoHelper.CargarProducto(fila);
+                usuario = SqlMapeoHelper.CargarUsuario(fila);
             }
-            return true;
+            return usuario;
         }
     }
 }

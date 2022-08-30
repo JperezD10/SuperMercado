@@ -9,5 +9,6 @@ namespace SuperMercado.BE
     public abstract class SqlEntidad
     {
         public int Id { get; set; }
+        public int DVH { get; set; }
     }
 }

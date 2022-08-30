@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SuperMercado.BE
 {
-    public class Categoria: SqlEntidad
+    public class Bitacora: SqlEntidad
     {
-        public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public List<Producto> Productos { get; set; }
+        public DateTime Fecha { get; set; }
+        public Usuario UsuarioAccion { get; set; }
     }
 }

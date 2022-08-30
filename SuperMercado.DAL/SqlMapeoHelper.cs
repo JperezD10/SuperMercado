@@ -47,5 +47,17 @@ namespace SuperMercado.DAL
                 Nombre = fila.Field<string>("Nombre")
             };
         }
+
+        public static Usuario CargarUsuario(DataRow fila)
+        {
+            return new Usuario()
+            {
+                Id = fila.Field<int>("Id"),
+                Nombre = fila.Field<string>("Nombre"),
+                Apellido = fila.Field<string>("Apellido"),
+                Username = fila.Field<string>("Username"),
+                DVH = fila.Field<int>("DVH")
+            };
+        }
     }
 }
