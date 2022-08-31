@@ -9,7 +9,6 @@ namespace SuperMercado.BE
     public class Categoria: SqlEntidad
     {
         public string Nombre { get; set; }
-        public string Descripcion { get; set; }
         public List<Producto> Productos { get; set; }
     }
 }
