@@ -1,4 +1,5 @@
-﻿@attribute [Route(Rutas.Index)]
+﻿@page "/productos"
+@page "/productos/{IdCategoria:int}"
 
 @if (tienePermiso)
 {
@@ -14,10 +15,13 @@ else
 
 
 @code{
+    [Parameter]
+    public int IdCategoria { get; set; } = 0;
+
     private bool tienePermiso = false;
 
     protected override void OnInitialized()
     {
-        tienePermiso = false; //aca haces la logica que te diga si tiene permiso o no el usuario
+        tienePermiso = true; //aca haces la logica que te diga si tiene permiso o no el usuario
     }
 }
