@@ -11,5 +11,6 @@ namespace SuperMercado.BE
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImgURL { get; set; }
+        public double Precio { get; set; }
     }
 }

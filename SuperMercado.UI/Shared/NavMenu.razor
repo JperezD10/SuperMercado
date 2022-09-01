@@ -1,0 +1,49 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">SuperMercado.UI</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Productos" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Todos los productos
+            </NavLink>
+        </div>
+        @foreach (var categoria in categorias)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href=@{$"Productos/{categoria.Id}"}>
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> @categoria.Nombre
+                </NavLink>
+            </div>
+        }
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    public CategoriaBLL CategoriaBLL;
+
+    public NavMenu()
+    {
+        CategoriaBLL = new CategoriaBLL();
+    }
+    public IList<Categoria> categorias = new List<Categoria>();
+
+    protected override void OnInitialized()
+    {
+        categorias = CategoriaBLL.GetCategorias();
+    }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

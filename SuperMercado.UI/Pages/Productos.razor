@@ -1,0 +1,31 @@
+﻿@page "/Productos"
+
+@if (tienePermiso)
+{
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <ProductosList Productos="productos"></ProductosList>
+    </div>
+}
+else
+{
+    <SinPermisoComponent></SinPermisoComponent>
+}
+
+
+@code{
+    private bool tienePermiso = false;
+
+    private ProductoBLL productoBLL;
+    public Productos()
+    {
+        productoBLL = new ProductoBLL();
+    }
+
+    public IList<Producto> productos { get; set; } = new List<Producto>();
+
+    protected override void OnInitialized()
+    {
+        tienePermiso = true; //aca haces la logica que te diga si tiene permiso o no el usuario
+        productos = productoBLL.GetProductos(null);
+    }
+}
