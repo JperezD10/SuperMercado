@@ -2,16 +2,31 @@
 {
     foreach (var producto in Productos)
     {
-        <div class="col">
+        <div class="col-md-4 mt-2">
             <div class="card">
-                <img src=@producto.ImgURL class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">@producto.Nombre</h5>
-                    <p class="card-text">@producto.Descripcion</p>
-                    <p class="card-text"><small class="text-muted">$@producto.Precio</small></p>
+                    <div class="card-img-actions">
+                        <img src="@producto.ImgURL" class="card-img" alt="no se encontro la imagen">
+                    </div>
+                </div>
+
+                <div class="card-body bg-light text-center">
+                    <div class="pt-2">
+                        <h6 class="font-weight-semibold mb-2">
+                            @producto.Nombre
+                        </h6>
+
+                        <p class="text-muted" data-abc="true">@producto.Descripcion</p>
+                    </div>
+
+                    <h3 class="mb-2 font-weight-semibold">$@producto.Precio</h3>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-cart-plus mr-2"></i> Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
         </div>
+
     }
     
 }
