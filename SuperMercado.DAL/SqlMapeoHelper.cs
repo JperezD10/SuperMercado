@@ -17,7 +17,8 @@ namespace SuperMercado.DAL
                 Id = (int)fila["Id"],
                 Nombre = fila["Nombre"].ToString() ?? "",
                 Descripcion = fila["Descripcion"].ToString() ?? "",
-                ImgURL = fila.Field<string>("ImgURL") ?? ""
+                ImgURL = fila.Field<string>("ImgURL") ?? "",
+                Precio = fila.Field<double>("Precio")
             };
         }
 
