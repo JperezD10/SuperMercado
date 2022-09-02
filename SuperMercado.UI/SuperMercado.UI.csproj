@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SuperMercado.BLL\SuperMercado.BLL.csproj" />
     <ProjectReference Include="..\SuperMercado\Shared\SuperMercado.BE.csproj" />
   </ItemGroup>
