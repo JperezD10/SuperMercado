@@ -10,5 +10,8 @@ namespace SuperMercado.BE
     {
         public int Id { get; set; }
         public int DVH { get; set; }
+        public abstract int CalcularDigitoHorizontal();
+
+        public bool CompararDigitoHorizontal(int dvh) => DVH == dvh;
     }
 }

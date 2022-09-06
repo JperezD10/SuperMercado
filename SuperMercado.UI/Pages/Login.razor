@@ -16,7 +16,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Usuario">Usuario</label>
-                                        <InputText id="Usuario" class="form-control form-control-lg" @bind-Value="loginModel.Username"/>
+                                        <InputText id="Usuario" class="form-control form-control-lg" autocomplete="off" @bind-Value="loginModel.Username"/>
                                         <ValidationMessage For="()=> loginModel.Username" />
                                     </div>
 
@@ -27,7 +27,7 @@
                                 <div class="col-md-12 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="Contraseña">Contraseña</label>
-                                        <InputText type="password" id="Contraseña" class="form-control form-control-lg" @bind-Value="loginModel.Password" />
+                                        <InputText type="password" id="Contraseña" class="form-control form-control-lg" autocomplete="off" @bind-Value="loginModel.Password" />
                                         <ValidationMessage For="()=> loginModel.Password" />
                                     </div>
                                 </div>
@@ -45,6 +45,13 @@
                                 </div>
                             </div>
 
+                            @if (!estadoLogin)
+                            {
+                                <div class="row mt-4 alert alert-danger">
+                                    @mensaje
+                                </div>
+                            }
+
                         </EditForm>
                     </div>
                 </div>
@@ -56,9 +63,15 @@
 
 @code {
     private LoginModel loginModel = new();
+    private string mensaje = "Usuario o contraseña incorrectos";
+    private bool estadoLogin = true;
     public void LogIn()
     {
+        estadoLogin = false;
         //logica de login y credenciales etc etc
-        NavigationManager.NavigateTo(Rutas.Index);
+        if (estadoLogin)
+        {
+            NavigationManager.NavigateTo(Rutas.Index);
+        }
     }
 }
