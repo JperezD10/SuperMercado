@@ -28,6 +28,7 @@ namespace SuperMercado.DAL
             {
                 Id = (int)fila["Id"],
                 Nombre = fila["Nombre"].ToString() ?? "",
+                Productos = new List<Producto>()
             };
         }
 
