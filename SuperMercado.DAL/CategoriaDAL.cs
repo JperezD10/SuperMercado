@@ -33,7 +33,7 @@ namespace SuperMercado.DAL
                 try
                 {
                     var categoria = SqlMapeoHelper.CargarCategoria(dr);
-                    verificarIntegridad((Categoria)categoria);
+                    //verificarIntegridad((Categoria)categoria);
                     Categorias.Add(categoria);
                 }
                 catch (Exception)

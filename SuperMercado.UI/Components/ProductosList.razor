@@ -1,5 +1,8 @@
 ﻿@if (Productos != null && Productos.Count > 0)
 {
+    <PageTitle>Productos</PageTitle>
+    <h1>Productos</h1>
+
     foreach (var producto in Productos)
     {
         <div class="col-md-4 mt-2">
@@ -32,6 +35,7 @@
 }
 else
 {
+    <PageTitle>No hay productos en este momento</PageTitle>
     <h1>No hay productos en este momento</h1>
 }
 

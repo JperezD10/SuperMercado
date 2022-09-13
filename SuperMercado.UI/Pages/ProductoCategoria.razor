@@ -1,21 +1,17 @@
 ﻿@page "/Productos/{IdCategoria:int}"
+@inject NavigationManager NavigationManager
 
-@if (tienePermiso)
-{
-    <div class="row">
-        <ProductosList Productos="productos"></ProductosList>
-    </div>
 
-}
-else
-{
-    <SinPermisoComponent></SinPermisoComponent>
-}
+<div class="row">
+    <ProductosList Productos="productos"></ProductosList>
+</div>
+
 
 
 @code {
 
     int _selectedIdCategoria;
+
     [Parameter]
     public int IdCategoria
     {
@@ -28,16 +24,20 @@ else
     }
     private bool tienePermiso = false;
     private ProductoBLL productoBLL;
+    public IList<Producto> productos { get; set; } = new List<Producto>();
+
     public ProductoCategoria()
     {
         productoBLL = new ProductoBLL();
     }
 
-    public IList<Producto> productos { get; set; } = new List<Producto>();
-
     protected override void OnInitialized()
     {
-        tienePermiso = true; //aca haces la logica que te diga si tiene permiso o no el usuario
+        tienePermiso = false; //aca haces la logica que te diga si tiene permiso o no el usuario
+        if (!tienePermiso)
+        {
+            NavigationManager.NavigateTo(Rutas.SinPermiso);
+        }
         productos = productoBLL.GetProductos(IdCategoria);
     }
 
