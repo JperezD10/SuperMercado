@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperMercado.BE
 {
-    public abstract class Componente: SqlEntidad
+    public abstract class Componente: SqlEntidadSeguridad
     {
         public string Nombre { get; set; }
 

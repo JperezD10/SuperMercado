@@ -16,14 +16,6 @@ namespace SuperMercado.DAL
             acceso = Acceso.GetInstance;
         }
 
-        void verificarIntegridad(Categoria categoria)
-        {
-            var dvh = categoria.CalcularDigitoHorizontal();
-            bool esIgual = categoria.CompararDigitoHorizontal(dvh);
-            if (!esIgual)
-                throw new Exception("Problemas en base de datos");
-        }
-
         public IList<Categoria> GetCategorias()
         {
             DataTable tabla = acceso.Leer("GetCategorias", null);
@@ -33,7 +25,6 @@ namespace SuperMercado.DAL
                 try
                 {
                     var categoria = SqlMapeoHelper.CargarCategoria(dr);
-                    //verificarIntegridad((Categoria)categoria);
                     Categorias.Add(categoria);
                 }
                 catch (Exception)

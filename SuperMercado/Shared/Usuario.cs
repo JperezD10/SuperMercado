@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SuperMercado.BE
 {
-    public class Usuario: SqlEntidad
+    public class Usuario: SqlEntidadSeguridad
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
