@@ -16,15 +16,53 @@ namespace SuperMercado.DAL
         public Usuario Login(string username, string contraseña)
         {
             Usuario usuario = null;
-            var tablaResult = acceso.Leer("sp", new SqlParameter[]
+            var tablaResult = acceso.Leer("Login", new SqlParameter[]
             {
-                new SqlParameter("parametro", 10)
+                new SqlParameter("@username", username),
+                new SqlParameter("@Password", contraseña)
             });
             foreach (DataRow fila in tablaResult.Rows)
             {
                 usuario = SqlMapeoHelper.CargarUsuario(fila);
             }
             return usuario;
+        }
+
+        public Usuario CrearUsuario(Usuario NuevoUsuario)
+        {
+            try
+            {
+                acceso.Escribir("RegistrarUsuario", new SqlParameter[]
+                {
+                    new SqlParameter("@Nombre", NuevoUsuario.Nombre),
+                    new SqlParameter("@Apellido", NuevoUsuario.Apellido),
+                    new SqlParameter("@username", NuevoUsuario.Username),
+                    new SqlParameter("@Password", NuevoUsuario.Password)
+                });
+                return NuevoUsuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+        public bool ExisteUsuario(Usuario usuario)
+        {
+            bool resultado = true;
+            try
+            {
+                var tabla = acceso.Leer("VerificarExistenciaUsuario", new SqlParameter[]
+                {
+                    new SqlParameter("@username", usuario.Username),
+                });
+                _ = tabla.Rows.Count > 0 ? resultado = true : resultado = false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
         }
     }
 }

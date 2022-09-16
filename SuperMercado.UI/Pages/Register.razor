@@ -9,104 +9,71 @@
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrarse</h3>
-                        <form>
-
+                        <EditForm Model="NuevoUsuario" OnValidSubmit="Registrar">
+                            <DataAnnotationsValidator />
                             <div class="row">
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-12 mb-4">
 
                                     <div class="form-outline">
-                                        <input type="text" id="firstName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="firstName">First Name</label>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6 mb-4">
-
-                                    <div class="form-outline">
-                                        <input type="text" id="lastName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="lastName">Last Name</label>
+                                        <label class="form-label" for="Usuario">Nombre</label>
+                                        <InputText id="Nombre" class="form-control form-control-lg" autocomplete="off" @bind-Value="NuevoUsuario.Nombre" />
+                                        <ValidationMessage For="()=> NuevoUsuario.Nombre" />
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 mb-4 d-flex align-items-center">
-
-                                    <div class="form-outline datepicker w-100">
-                                        <input type="text" class="form-control form-control-lg" id="birthdayDate" />
-                                        <label for="birthdayDate" class="form-label">Birthday</label>
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Contraseña">Apellido</label>
+                                        <InputText id="Apellido" class="form-control form-control-lg" autocomplete="off" @bind-Value="NuevoUsuario.Apellido" />
+                                        <ValidationMessage For="()=> NuevoUsuario.Apellido" />
                                     </div>
-
                                 </div>
-                                <div class="col-md-6 mb-4">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
 
-                                    <h6 class="mb-2 pb-1">Gender: </h6>
-
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                               value="option1" checked />
-                                        <label class="form-check-label" for="femaleGender">Female</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                               value="option2" />
-                                        <label class="form-check-label" for="maleGender">Male</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                                               value="option3" />
-                                        <label class="form-check-label" for="otherGender">Other</label>
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Usuario">Usuario</label>
+                                        <InputText id="Usuario" class="form-control form-control-lg" autocomplete="off" @bind-Value="NuevoUsuario.Username" />
+                                        <ValidationMessage For="()=> NuevoUsuario.Username" />
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-
+                                <div class="col-md-12 mb-4">
                                     <div class="form-outline">
-                                        <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                                        <label class="form-label" for="emailAddress">Email</label>
+                                        <label class="form-label" for="Contraseña">Contraseña</label>
+                                        <InputText type="password" id="Contraseña" class="form-control form-control-lg" autocomplete="off" @bind-Value="NuevoUsuario.Password" />
+                                        <ValidationMessage For="()=> NuevoUsuario.Password" />
                                     </div>
-
-                                </div>
-                                <div class="col-md-6 mb-4 pb-2">
-
-                                    <div class="form-outline">
-                                        <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                                        <label class="form-label" for="phoneNumber">Phone Number</label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-
-                                    <select class="select form-control-lg">
-                                        <option value="1" disabled>Choose option</option>
-                                        <option value="2">Subject 1</option>
-                                        <option value="3">Subject 2</option>
-                                        <option value="4">Subject 3</option>
-                                    </select>
-                                    <label class="form-label select-label">Choose option</label>
-
                                 </div>
                             </div>
 
                             <div class="mt-4 pt-2 row">
-                                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Registrar" />
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                    Registrar
+                                </button>
                             </div>
 
                             <div class="row">
                                 <div class="mt-4 pt-2 row">
-                                    <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="() => NavigationManager.NavigateTo(Rutas.Login)">¿Ya tiene una cuenta? Toque aqui</a>
+                                    <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="() => NavigationManager.NavigateTo(Rutas.Login)">Si ya tiene una cuenta toque aqui</a>
                                 </div>
                             </div>
-                        </form>
+
+                            @if (!seCreo)
+                            {
+                                <div class="row mt-4 alert alert-danger">
+                                    @mensaje
+                                </div>
+                            }
+
+                        </EditForm>
                     </div>
                 </div>
             </div>
@@ -115,5 +82,33 @@
 </section>
 
 @code {
+    private UsuarioDTO NuevoUsuario;
+    private UsuarioBLL UsuarioBLL;
+    public Register()
+    {
+        NuevoUsuario = new UsuarioDTO();
+        UsuarioBLL = new UsuarioBLL();
+    }
+    public string mensaje = "";
+    public bool seCreo = true;
+    private void Registrar()
+    {
+        (bool resultado, string mensajeSolicitud, Usuario? usuarioCreado) = UsuarioBLL.RegistrarUsuario(new Usuario()
+            {
+                Nombre = NuevoUsuario.Nombre,
+                Apellido = NuevoUsuario.Apellido,
+                Username = NuevoUsuario.Username,
+                Password = NuevoUsuario.Password
+            });
+        seCreo = resultado;
 
+        if (resultado)
+        {
+            //logica de claims
+        }
+        else
+        {
+            this.mensaje = mensajeSolicitud;
+        }
+    }
 }

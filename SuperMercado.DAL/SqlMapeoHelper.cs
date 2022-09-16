@@ -14,7 +14,7 @@ namespace SuperMercado.DAL
         {
             return new Producto()
             {
-                Id = (int)fila["Id"],
+                Id = (int)fila["IdProducto"],
                 Nombre = fila["Nombre"].ToString() ?? "",
                 Descripcion = fila["Descripcion"].ToString() ?? "",
                 ImgURL = fila.Field<string>("ImgURL") ?? "",
@@ -26,7 +26,7 @@ namespace SuperMercado.DAL
         {
             return new Categoria()
             {
-                Id = (int)fila["Id"],
+                Id = (int)fila["IdCategoria"],
                 Nombre = fila["Nombre"].ToString() ?? "",
                 Productos = new List<Producto>()
             };
@@ -54,10 +54,22 @@ namespace SuperMercado.DAL
         {
             return new Usuario()
             {
-                Id = fila.Field<int>("Id"),
+                Id = fila.Field<int>("IdUsuario"),
                 Nombre = fila.Field<string>("Nombre"),
                 Apellido = fila.Field<string>("Apellido"),
-                Username = fila.Field<string>("Username"),
+                Username = fila.Field<string>("Usuario"),
+                Password = fila.Field<string>("Contraseña"),
+            };
+        }
+
+        public static Bitacora CargarBitacora(DataRow fila)
+        {
+            return new Bitacora()
+            {
+                Id = fila.Field<int>("IdBitacora"),
+                Descripcion = fila.Field<string>("Descripcion"),
+                Fecha = fila.Field<DateTime>("Fecha"),
+                UsuarioAccion = new Usuario() { Id = fila.Field<int>("IdUsuario")},
                 DVH = fila.Field<int>("DVH")
             };
         }

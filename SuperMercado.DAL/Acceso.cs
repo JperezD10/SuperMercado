@@ -86,6 +86,7 @@ namespace SuperMercado.DAL
         public int Escribir(string st, SqlParameter[] parameters)
         {
             CerrarConexion();
+            AbrirConexion();
             _transaction = _conexion.BeginTransaction();
             SqlCommand sqlCommand = new SqlCommand()
             {

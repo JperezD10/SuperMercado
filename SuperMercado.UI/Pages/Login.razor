@@ -39,18 +39,18 @@
                                 </button>
                             </div>
 
-                            <div class="row">
-                                <div class="mt-4 pt-2 row">
-                                    <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="() => NavigationManager.NavigateTo(Rutas.Register)">Si no tiene una cuenta toque aqui</a>
-                                </div>
-                            </div>
-
-                            @if (!estadoLogin)
+                            @if (!estaLogeado)
                             {
                                 <div class="row mt-4 alert alert-danger">
                                     @mensaje
                                 </div>
                             }
+
+                            <div class="row">
+                                <div class="mt-4 pt-2 row">
+                                    <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="() => NavigationManager.NavigateTo(Rutas.Register)">Si no tiene una cuenta toque aqui</a>
+                                </div>
+                            </div>
 
                         </EditForm>
                     </div>
@@ -62,16 +62,28 @@
 
 
 @code {
-    private LoginModel loginModel = new();
-    private string mensaje = "Usuario o contraseña incorrectos";
-    private bool estadoLogin = true;
+    private LoginModel loginModel;
+    private UsuarioBLL _usuarioBLL;
+    public Login()
+    {
+        loginModel = new();
+        _usuarioBLL = new();
+    }
+    private string mensaje;
+    private bool estaLogeado = true;
     public void LogIn()
     {
-        estadoLogin = false;
+        (bool logeado, string mensajeRespuesta, Usuario? usuario ) = _usuarioBLL.Login(loginModel.Username, loginModel.Password);
         //logica de login y credenciales etc etc
-        if (estadoLogin)
+        estaLogeado = logeado;
+
+        if (estaLogeado)
         {
             NavigationManager.NavigateTo(Rutas.Index);
+        }
+        else
+        {
+            mensaje = mensajeRespuesta;
         }
     }
 }
