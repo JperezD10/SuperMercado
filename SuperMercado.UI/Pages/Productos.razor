@@ -1,5 +1,6 @@
 ﻿@page "/Productos"
 @inject NavigationManager NavigationManager
+@attribute [Authorize]
 
 <div class="row">
     <ProductosList Productos="productos"></ProductosList>
