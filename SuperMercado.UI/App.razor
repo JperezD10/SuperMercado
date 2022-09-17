@@ -13,12 +13,9 @@
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
         </Found>
         <NotFound>
-            <PageTitle>Not found</PageTitle>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <div class="alert alert-primary" role="alert">
-                    No es una ruta valida de la aplicacion
-                </div>
-            </LayoutView>
+            @{
+                NavigationManager.NavigateTo(Rutas.Index);
+            }
         </NotFound>
     </Router>
 </CascadingAuthenticationState>

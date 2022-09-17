@@ -9,8 +9,13 @@
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a style="cursor: pointer; text-decoration: underline; color: blue" @onclick="CerrarSesion" target="_blank">Salir</a>
+        <div class="top-row align-items-left px-4">
+            <div class="col-11">
+                <span style="display:block;text-align: left"stye>Hola @username!</span>
+            </div>
+            <div class="col-1">
+                <a style="display: block;cursor: pointer; text-decoration: underline; color: blue; text-align: end;" @onclick="CerrarSesion" target="_blank">Salir</a>
+            </div>
         </div>
 
         <article class="content px-4">
@@ -20,7 +25,11 @@
 </div>
 
 @code {
-
+    private string username;
+    protected override async Task OnInitializedAsync()
+    {
+        username = await LocalStorage.GetItemAsStringAsync("username");
+    }
     public async Task CerrarSesion()
     {
         //aca va la logica de claims y auth etc etc
