@@ -1,6 +1,8 @@
 ﻿@attribute [Route(Rutas.Login)]
 @layout LoginLayout
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthStateProvider
 
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -71,7 +73,7 @@
     }
     private string mensaje;
     private bool estaLogeado = true;
-    public void LogIn()
+    public async Task LogIn()
     {
         (bool logeado, string mensajeRespuesta, Usuario? usuario ) = _usuarioBLL.Login(loginModel.Username, loginModel.Password);
         //logica de login y credenciales etc etc
@@ -79,6 +81,8 @@
 
         if (estaLogeado)
         {
+            await LocalStorage.SetItemAsStringAsync("username", usuario.Username);
+            await AuthStateProvider.GetAuthenticationStateAsync();
             NavigationManager.NavigateTo(Rutas.Index);
         }
         else

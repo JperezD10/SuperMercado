@@ -23,7 +23,7 @@
             valuechanged();
         }
     }
-    private bool tienePermiso = false;
+    private bool tienePermiso = true;
     private ProductoBLL productoBLL;
     public IList<Producto> productos { get; set; } = new List<Producto>();
 
@@ -34,7 +34,7 @@
 
     protected override void OnInitialized()
     {
-        tienePermiso = false; //aca haces la logica que te diga si tiene permiso o no el usuario
+        tienePermiso = true; //aca haces la logica que te diga si tiene permiso o no el usuario
         if (!tienePermiso)
         {
             NavigationManager.NavigateTo(Rutas.SinPermiso);

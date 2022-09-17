@@ -1,5 +1,8 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthStateProvider
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -18,9 +21,11 @@
 
 @code {
 
-    public void CerrarSesion()
+    public async Task CerrarSesion()
     {
         //aca va la logica de claims y auth etc etc
+        await LocalStorage.RemoveItemAsync("username");
+        await AuthStateProvider.GetAuthenticationStateAsync();
         NavigationManager.NavigateTo(Rutas.Login);
     }
 

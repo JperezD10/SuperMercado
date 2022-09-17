@@ -21,7 +21,7 @@ namespace SuperMercado.UI.Services
                 var identity = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, username)
-                });
+                }, "login");
 
                 state = new AuthenticationState(new ClaimsPrincipal(identity));
             }
