@@ -41,6 +41,12 @@ namespace SuperMercado.BLL
                 return (false, "Usuario existente", null);
             }
             _UsuarioDAL.CrearUsuario(usuario);
+            BitacoraBLL.GrabarBitacora(new Bitacora()
+            {
+                Descripcion = $"Se ha registrado el usuario {usuario.Username}",
+                Fecha = DateTime.Now,
+                UsuarioAccion = usuario.Username
+            });
             return (true, "Usuario creado correctamente", usuario);
         }
     }

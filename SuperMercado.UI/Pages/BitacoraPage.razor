@@ -4,16 +4,28 @@
 <PageTitle>Supermercado | Bitacora</PageTitle>
 <h1>Bitacora</h1>
 
-<EditForm Model="bitacoraDTO">
+<EditForm Model="bitacoraDTO" OnSubmit="FiltrarBitacora">
     <div class="row">
-        <div class="col-6">
-            <InputDate max="@DateTime.Now.ToString()" @bind-Value="bitacoraDTO.FechaDesde" />
+        <div class="col-4">
+            <InputDate class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")" @bind-Value="bitacoraDTO.FechaDesde" />
         </div>
-        <div class="col-6">
-            <InputDate max="@DateTime.Now.ToString()" @bind-Value="bitacoraDTO.FechaHasta" />
+        <div class="col-4">
+            <InputDate class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")" @bind-Value="bitacoraDTO.FechaHasta" />
+        </div>
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary">
+                Filtrar
+            </button>
         </div>
     </div>
 </EditForm>
+
+@if(!CorrectModel)
+{
+    <div class="alert alert-danger" role="alert">
+        @mensajeError
+    </div>
+}
 
 
 <table class="table">
@@ -38,15 +50,32 @@
 
 
 @code {
-    private BitacoraDTO bitacoraDTO = new(){FechaDesde = DateTime.Now, FechaHasta = DateTime.Now};
+    private BitacoraDTO bitacoraDTO;
     private IList<Bitacora> RegistrosBitacora;
     BitacoraBLL bitacoraBLL;
+    private bool CorrectModel = true;
+    private string mensajeError = "";
     public BitacoraPage()
     {
+        bitacoraDTO = new() { FechaDesde = DateTime.Now.Date, FechaHasta = DateTime.Now.Date };
         bitacoraBLL = new();
     }
     protected override void OnInitialized()
     {
         RegistrosBitacora = bitacoraBLL.ObtenerBitacora(null, null);
+    }
+
+    private void FiltrarBitacora()
+    {
+        if (bitacoraDTO.FechaDesde > bitacoraDTO.FechaHasta)
+        {
+            CorrectModel = false;
+            mensajeError = "La fecha de inicio no puede ser mayor a la fecha de fin";
+        }
+        else
+        {
+            CorrectModel = true;
+            RegistrosBitacora = bitacoraBLL.ObtenerBitacora(bitacoraDTO.FechaDesde, bitacoraDTO.FechaHasta);
+        }
     }
 }

@@ -18,6 +18,9 @@ namespace SuperMercado.BLL
 
         public IList<Bitacora> ObtenerBitacora(DateTime? FechaDesde, DateTime? FechaHasta)
         {
+            //aca agrego un dia porque si buscas en el mismo dia para las dos fechas en un intervalo de 0 segundos y no te va a traer nada
+            if (FechaHasta.HasValue)
+                FechaHasta = FechaHasta.Value.AddDays(1);
             return bitacoraDAL.ObtenerBitacora(FechaDesde, FechaHasta);
         }
 
