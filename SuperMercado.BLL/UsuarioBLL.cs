@@ -6,9 +6,11 @@ namespace SuperMercado.BLL
     public class UsuarioBLL
     {
         UsuarioDAL _UsuarioDAL;
+        BitacoraBLL BitacoraBLL;
         public UsuarioBLL()
         {
             _UsuarioDAL = new UsuarioDAL();
+            BitacoraBLL = new();
         }
 
         public bool PuedeVerPantalla(Usuario usuario)
@@ -21,6 +23,12 @@ namespace SuperMercado.BLL
             var usuario = _UsuarioDAL.Login(username, Encriptacion.EncriptadoPermanente(contraseña));
             if (usuario == null)
                 return (false, "Usuario o contraseña incorrecta", null);
+            BitacoraBLL.GrabarBitacora(new Bitacora()
+            {
+                Descripcion = $"Se ha loggeado el usuario {usuario.Username}",
+                Fecha = DateTime.Now,
+                UsuarioAccion = usuario.Username
+            });
             return (true, "", usuario);
         }
 

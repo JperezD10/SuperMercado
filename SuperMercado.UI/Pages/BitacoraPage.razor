@@ -1,0 +1,52 @@
+﻿@attribute [Route(Rutas.Bitacora)]
+@attribute [Authorize]
+
+<PageTitle>Supermercado | Bitacora</PageTitle>
+<h1>Bitacora</h1>
+
+<EditForm Model="bitacoraDTO">
+    <div class="row">
+        <div class="col-6">
+            <InputDate max="@DateTime.Now.ToString()" @bind-Value="bitacoraDTO.FechaDesde" />
+        </div>
+        <div class="col-6">
+            <InputDate max="@DateTime.Now.ToString()" @bind-Value="bitacoraDTO.FechaHasta" />
+        </div>
+    </div>
+</EditForm>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var registro in RegistrosBitacora)
+        {
+            <tr>
+                <td>@registro.Descripcion</td>
+                <td>@registro.Fecha</td>
+                <td>@registro.UsuarioAccion</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private BitacoraDTO bitacoraDTO = new(){FechaDesde = DateTime.Now, FechaHasta = DateTime.Now};
+    private IList<Bitacora> RegistrosBitacora;
+    BitacoraBLL bitacoraBLL;
+    public BitacoraPage()
+    {
+        bitacoraBLL = new();
+    }
+    protected override void OnInitialized()
+    {
+        RegistrosBitacora = bitacoraBLL.ObtenerBitacora(null, null);
+    }
+}

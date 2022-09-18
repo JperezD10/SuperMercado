@@ -69,7 +69,7 @@ namespace SuperMercado.DAL
                 Id = fila.Field<int>("IdBitacora"),
                 Descripcion = fila.Field<string>("Descripcion"),
                 Fecha = fila.Field<DateTime>("Fecha"),
-                UsuarioAccion = new Usuario() { Id = fila.Field<int>("IdUsuario")},
+                UsuarioAccion = fila.Field<string>("Usuario"),
                 DVH = fila.Field<int>("DVH")
             };
         }

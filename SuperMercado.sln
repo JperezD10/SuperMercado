@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMercado.BLL", "SuperMe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMercado.DAL", "SuperMercado.DAL\SuperMercado.DAL.csproj", "{11E20F27-1383-4046-BEF7-5C84317230D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMercado.UI", "SuperMercado.UI\SuperMercado.UI.csproj", "{EFBF9652-91CF-43E1-BB80-C37311D75E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMercado.UI", "SuperMercado.UI\SuperMercado.UI.csproj", "{EFBF9652-91CF-43E1-BB80-C37311D75E30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
