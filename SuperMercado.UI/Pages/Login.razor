@@ -81,7 +81,7 @@
 
         if (estaLogeado)
         {
-            await LocalStorage.SetItemAsStringAsync("username", usuario.Username);
+            await LocalStorage.SetItemAsStringAsync("username", usuario?.Username);
             await AuthStateProvider.GetAuthenticationStateAsync();
             NavigationManager.NavigateTo(Rutas.Index);
         }

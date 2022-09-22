@@ -34,7 +34,6 @@ namespace SuperMercado.BLL
                     Descripcion = $"Se ha loggeado el usuario {usuario.Username}",
                     Fecha = DateTime.Now,
                     UsuarioAccion = usuario.Username
-                    
                 });
                 return (true, "", usuario);
             }
@@ -58,5 +57,7 @@ namespace SuperMercado.BLL
             });
             return (true, "Usuario creado correctamente", usuario);
         }
+
+        public Usuario ObtenerUsuarioPorUsername(string username) => _UsuarioDAL.ObtenerUsuarioPorUsername(username);
     }
 }

@@ -1,5 +1,6 @@
 ﻿@page "/Productos"
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
 @attribute [Authorize]
 
 <div class="row">
@@ -11,20 +12,19 @@
     private bool tienePermiso = true;
 
     private ProductoBLL productoBLL;
+    private PermisoService permisoService;
     public Productos()
     {
         productoBLL = new ProductoBLL();
+        permisoService = new();
     }
 
     public IList<Producto> productos = new List<Producto>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        tienePermiso = true; //aca haces la logica que te diga si tiene permiso o no el usuario
-        if (!tienePermiso)
-        {
-            NavigationManager.NavigateTo(Rutas.SinPermiso);
-        }
+        permisoService.TienePermiso(NavigationManager, await LocalStorage.GetItemAsStringAsync("username"), 1231);
+
         productos = productoBLL.GetProductos(null);
     }
 }

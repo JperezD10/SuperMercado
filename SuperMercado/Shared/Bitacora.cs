@@ -15,7 +15,7 @@ namespace SuperMercado.BE
 
         public override int CalcularDigitoHorizontal()
         {
-            byte[] props = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(Id + Descripcion + Fecha + UsuarioAccion));
+            byte[] props = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(Descripcion + Fecha + UsuarioAccion));
             return BitConverter.ToInt32(props, 0) % 1000000;
         }
     }

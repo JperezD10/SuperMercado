@@ -15,18 +15,9 @@ namespace SuperMercado.BLL
         public int CalcularDigitoVBitacora(List<Bitacora> tabla)
         {
             int res = 0;
-            bool suma = true;
             foreach (var item in tabla)
             {
-                if (suma)
-                {
-                    res += item.CalcularDigitoHorizontal();
-                }
-                else
-                {
-                    suma = true;
-                    res -= item.CalcularDigitoHorizontal();
-                }
+                res += item.CalcularDigitoHorizontal();
             }
             return res;
         }
@@ -34,18 +25,9 @@ namespace SuperMercado.BLL
         public int CalcularDigitoVComponente(List<Componente> tabla)
         {
             int res = 0;
-            bool suma = true;
             foreach (var item in tabla)
             {
-                if (suma)
-                {
-                    res += item.CalcularDigitoHorizontal();
-                }
-                else
-                {
-                    suma = true;
-                    res -= item.CalcularDigitoHorizontal();
-                }
+                res += item.CalcularDigitoHorizontal();
             }
             return res;
         }

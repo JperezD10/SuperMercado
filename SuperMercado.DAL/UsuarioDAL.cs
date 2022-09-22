@@ -64,5 +64,21 @@ namespace SuperMercado.DAL
             }
             return resultado;
         }
+
+        public Usuario ObtenerUsuarioPorUsername(string username)
+        {
+            try
+            {
+                var tabla = acceso.Leer("ObtenerUsuarioPorUsername", new SqlParameter[]
+                {
+                    new SqlParameter("@username", username)
+                });
+                return SqlMapeoHelper.CargarUsuario(tabla.Rows[0]);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

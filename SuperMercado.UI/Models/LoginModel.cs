@@ -8,7 +8,6 @@ namespace SuperMercado.UI.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password necesaria")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$", ErrorMessage = "Formato de contraseña incorrecta")]
         public string Password { get; set; }
     }
 }

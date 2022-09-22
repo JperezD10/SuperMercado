@@ -40,10 +40,7 @@ namespace SuperMercado.DAL
         {
             try
             {
-                DataTable datos = acceso.Leer("ObtenerTablaBitacora", new SqlParameter[]
-                {
-
-                });
+                DataTable datos = acceso.Leer("ObtenerTablaBitacora",null);
                 List<Bitacora> lista = new List<Bitacora>();
                 if (datos.Rows.Count > 0)
                 {
@@ -64,10 +61,7 @@ namespace SuperMercado.DAL
         {
             try
             {
-                DataTable datos = acceso.Leer("ObtenerTablaComponente", new SqlParameter[]
-                {
-
-                });
+                DataTable datos = acceso.Leer("ObtenerTablaComponente", null);
                 List<Componente> lista = new List<Componente>();
                 if (datos.Rows.Count > 0)
                 {
