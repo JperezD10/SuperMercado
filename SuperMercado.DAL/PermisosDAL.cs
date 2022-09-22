@@ -77,7 +77,7 @@ namespace SuperMercado.DAL
 
         public IList<Componente> GetComponentesPorFamilia(Componente familia)
         {
-            var tablaResult = acceso.Leer("ObtenerFamiliasTodos", new SqlParameter[]
+            var tablaResult = acceso.Leer("ObtenerComponentesPorFamilia", new SqlParameter[]
             {
                 new SqlParameter("@idPadre", familia.Id)
             });
@@ -123,11 +123,11 @@ namespace SuperMercado.DAL
         }
 
 
-        public IList<Componente> GetComponentesPorUsuario(string username)
+        public List<Componente> GetComponentesPorUsuario(int user)
         {
             var tablaResult = acceso.Leer("ObtenerPermisosRaizUsuario", new SqlParameter[]
             {
-                new SqlParameter("@username", username)
+                new SqlParameter("@idusuario", user)
             });
 
             List<Componente> listapermisos = new List<Componente>();

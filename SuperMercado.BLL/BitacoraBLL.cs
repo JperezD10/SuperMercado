@@ -28,6 +28,8 @@ namespace SuperMercado.BLL
         {
             bitacora.DVH = bitacora.CalcularDigitoHorizontal();
             bitacoraDAL.GrabarBitacora(bitacora);
+            DigitoBLL digBLL = new DigitoBLL();
+            digBLL.ActualizarDVV("Bitacora");
         }
     }
 }

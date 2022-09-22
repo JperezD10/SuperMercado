@@ -13,7 +13,7 @@ namespace SuperMercado.DAL
         {
             //conexion juli
             _conexion = new SqlConnection("Data Source=.;Initial Catalog=SuperMercado;Integrated Security=True");
-
+            //_conexion = new SqlConnection("Data Source=DESKTOP-BCE1OBQ\\LOCALSERVER;Initial Catalog=SuperMercado;Integrated Security=True");
 
             //conexion fede
             //_conexion = new SqlConnection("");

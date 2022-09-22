@@ -20,16 +20,25 @@ namespace SuperMercado.BLL
 
         public (bool loginCorrecto, string mensaje, Usuario? usuarioLogueado) Login(string username, string contraseña)
         {
-            var usuario = _UsuarioDAL.Login(username, Encriptacion.EncriptadoPermanente(contraseña));
-            if (usuario == null)
-                return (false, "Usuario o contraseña incorrecta", null);
-            BitacoraBLL.GrabarBitacora(new Bitacora()
+            DigitoBLL digbll = new DigitoBLL();
+            bool sistemaIntegro = digbll.VerificarIntegridadGeneral();
+            if (sistemaIntegro)
             {
-                Descripcion = $"Se ha loggeado el usuario {usuario.Username}",
-                Fecha = DateTime.Now,
-                UsuarioAccion = usuario.Username
-            });
-            return (true, "", usuario);
+                var usuario = _UsuarioDAL.Login(username, Encriptacion.EncriptadoPermanente(contraseña));
+                if (usuario == null)
+                    return (false, "Usuario o contraseña incorrecta", null);
+                PermisosBLL permiBLL = new PermisosBLL();
+                usuario.Permisos = permiBLL.ObtenerPermisosUser(usuario);
+                BitacoraBLL.GrabarBitacora(new Bitacora()
+                {
+                    Descripcion = $"Se ha loggeado el usuario {usuario.Username}",
+                    Fecha = DateTime.Now,
+                    UsuarioAccion = usuario.Username
+                    
+                });
+                return (true, "", usuario);
+            }
+            return (false, "", null);
         }
 
         public (bool creacionCorrecta, string mensaje, Usuario? usuarioCreado) RegistrarUsuario(Usuario usuario)

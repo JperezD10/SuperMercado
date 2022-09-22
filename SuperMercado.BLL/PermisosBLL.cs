@@ -189,5 +189,10 @@ namespace SuperMercado.BLL
             }*/
         }
 
+        public List<Componente> ObtenerPermisosUser(Usuario user)
+        {
+            return permiDAL.GetComponentesPorUsuario(user.Id);
+        }
+
     }
 }

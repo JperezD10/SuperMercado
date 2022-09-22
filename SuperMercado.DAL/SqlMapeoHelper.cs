@@ -73,5 +73,29 @@ namespace SuperMercado.DAL
                 DVH = fila.Field<int>("DVH")
             };
         }
+
+        public static Componente CargarComponente(DataRow fila)
+        {
+            bool esFamilia = fila.Field<byte>("esFamilia") == 0 ? false : true;
+            switch (esFamilia)
+            {
+                case true:
+                    return new Familia()
+                    {
+                        Id = fila.Field<int>("Id"),
+                        Nombre = fila.Field<string>("Nombre"),
+                        DVH = fila.Field<int>("DVH")
+                    };
+
+                case false:
+                    return new Patente()
+                    {
+                        Id = fila.Field<int>("Id"),
+                        Nombre = fila.Field<string>("Nombre"),
+                        DVH = fila.Field<int>("DVH")
+                    };
+
+            }
+        }
     }
 }
